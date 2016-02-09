@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "UI for identifying risky customers and risky bets",
   "scripts": {
-    "lint": "eslint scripts/**/*.jsx",
+    "lint": "eslint scripts/src/**/*.jsx scripts/src/**/*.js",
     "compile": "webpack --config webpack.config.js",
     "build": "npm run lint && npm run compile",
     "start": "webpack-dev-server --port 4000"
@@ -29,6 +29,8 @@
   "dependencies": {
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "react-redux": "^4.4.0",
+    "redux": "^3.3.1"
   }
 }
