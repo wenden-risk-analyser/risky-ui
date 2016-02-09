@@ -67,7 +67,7 @@
 
 	var _actions = __webpack_require__(184);
 
-	var _customersApp = __webpack_require__(185);
+	var _customersApp = __webpack_require__(186);
 
 	var _customersApp2 = _interopRequireDefault(_customersApp);
 
@@ -21216,9 +21216,35 @@
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
+	var _customerClient = __webpack_require__(185);
+
+	var _customerClient2 = _interopRequireDefault(_customerClient);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	// will become customer service used to retrieve the customer data
+	function getAllCustomers() {
+	    return {
+	        type: actionTypes.RECEIVE_CUSTOMERS,
+	        customers: _customerClient2.default.getCustomers()
+	    };
+	}
+
+/***/ },
+/* 185 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	/*
+	 * Customer service for retrieving customer data.
+	 *
+	 *
+	 */
 	var customerService = function customerService() {
 	    function getCustomers() {
 	        return [{
@@ -21249,15 +21275,10 @@
 	    };
 	};
 
-	function getAllCustomers() {
-	    return {
-	        type: actionTypes.RECEIVE_CUSTOMERS,
-	        customers: customerService().getCustomers()
-	    };
-	}
+	exports.default = customerService();
 
 /***/ },
-/* 185 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21274,7 +21295,7 @@
 
 	var _reactRedux = __webpack_require__(160);
 
-	var _customerTable = __webpack_require__(186);
+	var _customerTable = __webpack_require__(187);
 
 	var _customerTable2 = _interopRequireDefault(_customerTable);
 
@@ -21315,7 +21336,7 @@
 	    return CustomerApp;
 	}(_react.Component);
 
-	// will build this out when structure known
+	// will build this out when structure completely known
 
 	CustomerApp.propTypes = {
 	    customers: _react.PropTypes.array
@@ -21330,7 +21351,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(CustomerApp);
 
 /***/ },
-/* 186 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21444,8 +21465,9 @@
 	  );
 	};
 
+	// will build this out when structure completely known
 	CustomerTable.propTypes = {
-	  customers: _react.PropTypes.number
+	  customers: _react.PropTypes.array
 	};
 
 	exports.default = CustomerTable;

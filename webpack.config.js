@@ -1,38 +1,3 @@
-var paths = {
-    scripts: {
-        vendor: [],
-        app: [
-            'Scripts/src/**/*.{js,jsx}'
-        ],
-        tests: [
-            'Scripts/src/**/*.test.{js,jsx}'
-        ],
-        concat: 'Scripts/dist/app.js',
-        dist: 'Scripts/dist/app.min.js',
-        rev: 'Scripts/dist/rev/app.min-*.js'
-    },
-    styles: {
-        less: {
-            vendor: ['./bower_components/commbank-bootstrap/dist/css/commbank.css'],
-            app: [
-                'Styles/src/**/*.less'
-            ]
-        },
-        src: [
-            'Styles/css/vendor/**/*.css',
-            'Styles/css/app/**/*.css'
-        ],
-        concat: 'Styles/dist/app.css',
-        dist: 'Styles/dist/app.min.css',
-        rev: 'Styles/dist/rev/app.min-*.css'
-    },
-    resources: {
-        vendor: {
-            fonts: ['./bower_components/commbank-bootstrap/dist/fonts/**']
-        }
-    }
-};
-
 module.exports = {
     target: 'web',
     entry: {
