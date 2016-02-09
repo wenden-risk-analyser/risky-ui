@@ -1,38 +1,26 @@
+import settled from '../../_mockSettledBets';
+import unsettled from '../../_mockUnsettledBets';
+
 /*
  * Bet service for retrieving customer data.
  *
- * TODO: Get from provided csv file
+ * TODO: Get from provided csv file. This is a dirty, dirty hack
  */
 function getBets() {
-    return [
-        {
-            customerId: '2',
-            eventId: '1',
-            participantId: '3',
-            stake: 300,
-            potentialPayout: 500,
-            settled: true,
-            payout: 500
-        },
-        {
-            customerId: '2',
-            eventId: '3',
-            participantId: '5',
-            stake: 300,
-            potentialPayout: 500,
-            settled: true,
-            payout: 500
-        },
-        {
-            customerId: '2',
-            eventId: '2',
-            participantId: '4',
-            stake: 300,
-            potentialPayout: 500,
-            settled: true,
-            payout: 0
-        }
-    ];
+    const settledFormatted = settled.map(bet => {
+        bet.settled = true;
+        bet.potentialPayout = bet.payout;
+
+        return bet;
+    });
+
+    const unsettledFormatted = unsettled.map(bet => {
+        bet.settled = false;
+
+        return bet;
+    });
+
+    return settledFormatted.concat(unsettledFormatted);
 }
 
 function search(query) {

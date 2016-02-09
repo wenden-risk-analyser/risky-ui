@@ -67,7 +67,7 @@
 
 	var _actions = __webpack_require__(186);
 
-	var _customersApp = __webpack_require__(196);
+	var _customersApp = __webpack_require__(198);
 
 	var _customersApp2 = _interopRequireDefault(_customersApp);
 
@@ -21322,7 +21322,7 @@
 
 	var _betService2 = _interopRequireDefault(_betService);
 
-	var _riskCalculator = __webpack_require__(190);
+	var _riskCalculator = __webpack_require__(192);
 
 	var _riskCalculator2 = _interopRequireDefault(_riskCalculator);
 
@@ -21370,24 +21370,36 @@
 
 /***/ },
 /* 188 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+
+	var _betService = __webpack_require__(189);
+
+	var _betService2 = _interopRequireDefault(_betService);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	/*
 	 * Customer service for retrieving customer data.
 	 *
 	 * TODO: Get from provided csv file
 	 */
 	function getCustomers() {
-	    return [{
-	        id: '2'
-	    }, {
-	        id: '3'
-	    }];
+	    var customers = [];
+	    _betService2.default.getAll().forEach(function (bet) {
+	        if (customers.filter(function (customer) {
+	            return customer.id === bet.customerId;
+	        }).length === 0) {
+	            customers.push({ id: bet.customerId });
+	        }
+	    });
+
+	    return customers;
 	}
 
 	// customer service
@@ -21398,44 +21410,44 @@
 
 /***/ },
 /* 189 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+
+	var _mockSettledBets = __webpack_require__(190);
+
+	var _mockSettledBets2 = _interopRequireDefault(_mockSettledBets);
+
+	var _mockUnsettledBets = __webpack_require__(191);
+
+	var _mockUnsettledBets2 = _interopRequireDefault(_mockUnsettledBets);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	/*
 	 * Bet service for retrieving customer data.
 	 *
 	 * TODO: Get from provided csv file
 	 */
 	function getBets() {
-	    return [{
-	        customerId: '2',
-	        eventId: '1',
-	        participantId: '3',
-	        stake: 300,
-	        potentialPayout: 500,
-	        settled: true,
-	        payout: 500
-	    }, {
-	        customerId: '2',
-	        eventId: '3',
-	        participantId: '5',
-	        stake: 300,
-	        potentialPayout: 500,
-	        settled: true,
-	        payout: 500
-	    }, {
-	        customerId: '2',
-	        eventId: '2',
-	        participantId: '4',
-	        stake: 300,
-	        potentialPayout: 500,
-	        settled: true,
-	        payout: 0
-	    }];
+	    var settledFormatted = _mockSettledBets2.default.map(function (bet) {
+	        bet.settled = true;
+	        bet.potentialPayout = bet.payout;
+
+	        return bet;
+	    });
+
+	    var unsettledFormatted = _mockUnsettledBets2.default.map(function (bet) {
+	        bet.settled = false;
+
+	        return bet;
+	    });
+
+	    return settledFormatted.concat(unsettledFormatted);
 	}
 
 	function search(query) {
@@ -21456,20 +21468,474 @@
 
 /***/ },
 /* 190 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	module.exports = __webpack_require__(191);
+	"use strict";
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = [{
+	    "customerId": "1",
+	    "eventId": "1",
+	    "participantId": "6",
+	    "stake": 50,
+	    "payout": 250
+	}, {
+	    "customerId": "2",
+	    "eventId": "1",
+	    "participantId": "3",
+	    "stake": 5,
+	    "payout": 0
+	}, {
+	    "customerId": "3",
+	    "eventId": "1",
+	    "participantId": "3",
+	    "stake": 20,
+	    "payout": 0
+	}, {
+	    "customerId": "4",
+	    "eventId": "1",
+	    "participantId": "6",
+	    "stake": 200,
+	    "payout": 1000
+	}, {
+	    "customerId": "1",
+	    "eventId": "2",
+	    "participantId": "1",
+	    "stake": 20,
+	    "payout": 60
+	}, {
+	    "customerId": "2",
+	    "eventId": "2",
+	    "participantId": "1",
+	    "stake": 5,
+	    "payout": 15
+	}, {
+	    "customerId": "3",
+	    "eventId": "2",
+	    "participantId": "2",
+	    "stake": 50,
+	    "payout": 0
+	}, {
+	    "customerId": "4",
+	    "eventId": "2",
+	    "participantId": "5",
+	    "stake": 100,
+	    "payout": 0
+	}, {
+	    "customerId": "5",
+	    "eventId": "2",
+	    "participantId": "3",
+	    "stake": 20,
+	    "payout": 0
+	}, {
+	    "customerId": "1",
+	    "eventId": "3",
+	    "participantId": "5",
+	    "stake": 50,
+	    "payout": 0
+	}, {
+	    "customerId": "2",
+	    "eventId": "3",
+	    "participantId": "5",
+	    "stake": 10,
+	    "payout": 0
+	}, {
+	    "customerId": "3",
+	    "eventId": "3",
+	    "participantId": "5",
+	    "stake": 20,
+	    "payout": 0
+	}, {
+	    "customerId": "4",
+	    "eventId": "3",
+	    "participantId": "5",
+	    "stake": 100,
+	    "payout": 0
+	}, {
+	    "customerId": "5",
+	    "eventId": "3",
+	    "participantId": "6",
+	    "stake": 20,
+	    "payout": 0
+	}, {
+	    "customerId": "6",
+	    "eventId": "3",
+	    "participantId": "1",
+	    "stake": 50,
+	    "payout": 500
+	}, {
+	    "customerId": "1",
+	    "eventId": "4",
+	    "participantId": "1",
+	    "stake": 50,
+	    "payout": 120
+	}, {
+	    "customerId": "2",
+	    "eventId": "4",
+	    "participantId": "5",
+	    "stake": 10,
+	    "payout": 0
+	}, {
+	    "customerId": "3",
+	    "eventId": "4",
+	    "participantId": "6",
+	    "stake": 50,
+	    "payout": 0
+	}, {
+	    "customerId": "1",
+	    "eventId": "5",
+	    "participantId": "10",
+	    "stake": 50,
+	    "payout": 400
+	}, {
+	    "customerId": "2",
+	    "eventId": "5",
+	    "participantId": "7",
+	    "stake": 10,
+	    "payout": 0
+	}, {
+	    "customerId": "3",
+	    "eventId": "5",
+	    "participantId": "9",
+	    "stake": 20,
+	    "payout": 0
+	}, {
+	    "customerId": "4",
+	    "eventId": "5",
+	    "participantId": "9",
+	    "stake": 200,
+	    "payout": 0
+	}, {
+	    "customerId": "4",
+	    "eventId": "5",
+	    "participantId": "10",
+	    "stake": 250,
+	    "payout": 2000
+	}, {
+	    "customerId": "5",
+	    "eventId": "5",
+	    "participantId": "10",
+	    "stake": 20,
+	    "payout": 160
+	}, {
+	    "customerId": "6",
+	    "eventId": "5",
+	    "participantId": "10",
+	    "stake": 50,
+	    "payout": 400
+	}, {
+	    "customerId": "1",
+	    "eventId": "5",
+	    "participantId": "7",
+	    "stake": 40,
+	    "payout": 0
+	}, {
+	    "customerId": "1",
+	    "eventId": "6",
+	    "participantId": "4",
+	    "stake": 40,
+	    "payout": 160
+	}, {
+	    "customerId": "2",
+	    "eventId": "6",
+	    "participantId": "3",
+	    "stake": 15,
+	    "payout": 0
+	}, {
+	    "customerId": "3",
+	    "eventId": "6",
+	    "participantId": "4",
+	    "stake": 50,
+	    "payout": 0
+	}, {
+	    "customerId": "4",
+	    "eventId": "6",
+	    "participantId": "5",
+	    "stake": 100,
+	    "payout": 0
+	}, {
+	    "customerId": "4",
+	    "eventId": "6",
+	    "participantId": "4",
+	    "stake": 120,
+	    "payout": 480
+	}, {
+	    "customerId": "5",
+	    "eventId": "6",
+	    "participantId": "4",
+	    "stake": 10,
+	    "payout": 40
+	}, {
+	    "customerId": "2",
+	    "eventId": "7",
+	    "participantId": "8",
+	    "stake": 10,
+	    "payout": 0
+	}, {
+	    "customerId": "2",
+	    "eventId": "7",
+	    "participantId": "7",
+	    "stake": 20,
+	    "payout": 0
+	}, {
+	    "customerId": "3",
+	    "eventId": "7",
+	    "participantId": "3",
+	    "stake": 50,
+	    "payout": 300
+	}, {
+	    "customerId": "1",
+	    "eventId": "8",
+	    "participantId": "5",
+	    "stake": 80,
+	    "payout": 320
+	}, {
+	    "customerId": "5",
+	    "eventId": "8",
+	    "participantId": "8",
+	    "stake": 20,
+	    "payout": 0
+	}, {
+	    "customerId": "1",
+	    "eventId": "9",
+	    "participantId": "2",
+	    "stake": 60,
+	    "payout": 480
+	}, {
+	    "customerId": "1",
+	    "eventId": "9",
+	    "participantId": "4",
+	    "stake": 50,
+	    "payout": 0
+	}, {
+	    "customerId": "2",
+	    "eventId": "9",
+	    "participantId": "3",
+	    "stake": 20,
+	    "payout": 0
+	}, {
+	    "customerId": "2",
+	    "eventId": "9",
+	    "participantId": "10",
+	    "stake": 20,
+	    "payout": 0
+	}, {
+	    "customerId": "3",
+	    "eventId": "9",
+	    "participantId": "10",
+	    "stake": 20,
+	    "payout": 0
+	}, {
+	    "customerId": "3",
+	    "eventId": "9",
+	    "participantId": "2",
+	    "stake": 50,
+	    "payout": 400
+	}, {
+	    "customerId": "4",
+	    "eventId": "9",
+	    "participantId": "2",
+	    "stake": 200,
+	    "payout": 1600
+	}, {
+	    "customerId": "4",
+	    "eventId": "9",
+	    "participantId": "6",
+	    "stake": 300,
+	    "payout": 0
+	}, {
+	    "customerId": "5",
+	    "eventId": "9",
+	    "participantId": "8",
+	    "stake": 30,
+	    "payout": 0
+	}, {
+	    "customerId": "5",
+	    "eventId": "9",
+	    "participantId": "7",
+	    "stake": 25,
+	    "payout": 0
+	}, {
+	    "customerId": "6",
+	    "eventId": "9",
+	    "participantId": "2",
+	    "stake": 50,
+	    "payout": 400
+	}, {
+	    "customerId": "6",
+	    "eventId": "9",
+	    "participantId": "7",
+	    "stake": 40,
+	    "payout": 0
+	}, {
+	    "customerId": "6",
+	    "eventId": "9",
+	    "participantId": "6",
+	    "stake": 50,
+	    "payout": 0
+	}];
 
 /***/ },
 /* 191 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = [{
+	    "customerId": "1",
+	    "eventId": "11",
+	    "participantId": "4",
+	    "stake": 50,
+	    "potentialPayout": 500
+	}, {
+	    "customerId": "3",
+	    "eventId": "11",
+	    "participantId": "6",
+	    "stake": 50,
+	    "potentialPayout": 400
+	}, {
+	    "customerId": "4",
+	    "eventId": "11",
+	    "participantId": "7",
+	    "stake": 300,
+	    "potentialPayout": 1200
+	}, {
+	    "customerId": "5",
+	    "eventId": "11",
+	    "participantId": "2",
+	    "stake": 20,
+	    "potentialPayout": 80
+	}, {
+	    "customerId": "1",
+	    "eventId": "12",
+	    "participantId": "4",
+	    "stake": 500,
+	    "potentialPayout": 5000
+	}, {
+	    "customerId": "2",
+	    "eventId": "12",
+	    "participantId": "4",
+	    "stake": 20,
+	    "potentialPayout": 200
+	}, {
+	    "customerId": "3",
+	    "eventId": "12",
+	    "participantId": "1",
+	    "stake": 50,
+	    "potentialPayout": 400
+	}, {
+	    "customerId": "4",
+	    "eventId": "12",
+	    "participantId": "1",
+	    "stake": 250,
+	    "potentialPayout": 1000
+	}, {
+	    "customerId": "5",
+	    "eventId": "12",
+	    "participantId": "5",
+	    "stake": 100,
+	    "potentialPayout": 800
+	}, {
+	    "customerId": "6",
+	    "eventId": "12",
+	    "participantId": "3",
+	    "stake": 50,
+	    "potentialPayout": 400
+	}, {
+	    "customerId": "6",
+	    "eventId": "12",
+	    "participantId": "2",
+	    "stake": 50,
+	    "potentialPayout": 200
+	}, {
+	    "customerId": "1",
+	    "eventId": "13",
+	    "participantId": "3",
+	    "stake": 50,
+	    "potentialPayout": 200
+	}, {
+	    "customerId": "2",
+	    "eventId": "13",
+	    "participantId": "1",
+	    "stake": 10,
+	    "potentialPayout": 50
+	}, {
+	    "customerId": "3",
+	    "eventId": "13",
+	    "participantId": "9",
+	    "stake": 40,
+	    "potentialPayout": 400
+	}, {
+	    "customerId": "4",
+	    "eventId": "13",
+	    "participantId": "6",
+	    "stake": 200,
+	    "potentialPayout": 1000
+	}, {
+	    "customerId": "6",
+	    "eventId": "13",
+	    "participantId": "4",
+	    "stake": 500,
+	    "potentialPayout": 4000
+	}, {
+	    "customerId": "1",
+	    "eventId": "14",
+	    "participantId": "2",
+	    "stake": 1000,
+	    "potentialPayout": 8000
+	}, {
+	    "customerId": "2",
+	    "eventId": "14",
+	    "participantId": "5",
+	    "stake": 15,
+	    "potentialPayout": 60
+	}, {
+	    "customerId": "3",
+	    "eventId": "14",
+	    "participantId": "8",
+	    "stake": 300,
+	    "potentialPayout": 900
+	}, {
+	    "customerId": "4",
+	    "eventId": "14",
+	    "participantId": "5",
+	    "stake": 200,
+	    "potentialPayout": 800
+	}, {
+	    "customerId": "5",
+	    "eventId": "14",
+	    "participantId": "6",
+	    "stake": 100,
+	    "potentialPayout": 600
+	}, {
+	    "customerId": "6",
+	    "eventId": "14",
+	    "participantId": "6",
+	    "stake": 50,
+	    "potentialPayout": 400
+	}];
+
+/***/ },
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
-	const check             = __webpack_require__(192);
-	const riskConstants     = __webpack_require__(193);
+	module.exports = __webpack_require__(193);
+
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	const check             = __webpack_require__(194);
+	const riskConstants     = __webpack_require__(195);
 	const validationContent = riskConstants.ValidationContent;
-	const customerRisks     = __webpack_require__(194);
-	const betRisks     = __webpack_require__(195);
+	const customerRisks     = __webpack_require__(196);
+	const betRisks     = __webpack_require__(197);
 
 	/*
 	* Customer Service interface
@@ -21611,7 +22077,7 @@
 
 
 /***/ },
-/* 192 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*globals define, module, Symbol */
@@ -22476,7 +22942,7 @@
 
 
 /***/ },
-/* 193 */
+/* 195 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -22510,10 +22976,10 @@
 
 
 /***/ },
-/* 194 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
-	const riskConstants = __webpack_require__(193);
+	const riskConstants = __webpack_require__(195);
 
 	/*
 	* @Public
@@ -22545,10 +23011,10 @@
 
 
 /***/ },
-/* 195 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
-	const riskConstants = __webpack_require__(193);
+	const riskConstants = __webpack_require__(195);
 
 	/*
 	* @Public
@@ -22613,7 +23079,7 @@
 
 
 /***/ },
-/* 196 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22630,11 +23096,11 @@
 
 	var _reactRedux = __webpack_require__(160);
 
-	var _customerTable = __webpack_require__(197);
+	var _customerTable = __webpack_require__(199);
 
 	var _customerTable2 = _interopRequireDefault(_customerTable);
 
-	var _betTable = __webpack_require__(198);
+	var _betTable = __webpack_require__(200);
 
 	var _betTable2 = _interopRequireDefault(_betTable);
 
@@ -22693,7 +23159,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(CustomerApp);
 
 /***/ },
-/* 197 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22795,7 +23261,7 @@
 	exports.default = CustomerTable;
 
 /***/ },
-/* 198 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

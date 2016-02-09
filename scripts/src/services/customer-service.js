@@ -1,17 +1,19 @@
+import betService from './bet-service';
+
 /*
  * Customer service for retrieving customer data.
  *
- * TODO: Get from provided csv file
+ * TODO: Get from provided csv file. This is a dirty, dirty hack
  */
 function getCustomers() {
-    return [
-        {
-            id: '2'
-        },
-        {
-            id: '3'
+    const customers = [];
+    betService.getAll().forEach(bet => {
+        if (customers.filter(customer => customer.id === bet.customerId).length === 0) {
+            customers.push({ id: bet.customerId });
         }
-    ];
+    });
+
+    return customers;
 }
 
 // customer service
