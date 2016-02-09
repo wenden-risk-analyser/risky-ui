@@ -10,5 +10,6 @@ module.exports = {
           'ignoreUrls': true,
           'ignoreComments': false
         }],
+        "new-cap": [2, {"capIsNewExceptions": ["List"]}]
     }
 };

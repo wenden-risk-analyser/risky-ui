@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import CustomerTable from './customer-table';
 
-class CustomerApp extends React.Component {
+class CustomerApp extends Component {
     render() {
-        return <div>Hello, there are {this.props.customers.length} customers.</div>;
+        return (<div>
+          <h1>Risky Customer Analyser</h1>
+          <p></p>
+          <CustomerTable customers={this.props.customers} />
+        </div>);
     }
 }
 
-// will build
+// will build this out when structure completely known
 CustomerApp.propTypes = {
-    customers: React.PropTypes.array
+    customers: PropTypes.array
 };
 
 function mapStateToProps(state) {

@@ -21221,7 +21221,27 @@
 	// will become customer service used to retrieve the customer data
 	var customerService = function customerService() {
 	    function getCustomers() {
-	        return [];
+	        return [{
+	            id: '1',
+	            numberOfBets: 1000,
+	            numberOfWins: 300,
+	            totalOutlay: 9999,
+	            totalPayout: 7000,
+	            riskProfile: {
+	                risk: 'safe',
+	                reason: ''
+	            }
+	        }, {
+	            id: '3',
+	            numberOfBets: 400,
+	            numberOfWins: 300,
+	            totalOutlay: 9999,
+	            totalPayout: 17000,
+	            riskProfile: {
+	                risk: 'risky',
+	                reason: 'large win percentage'
+	            }
+	        }];
 	    }
 
 	    return {
@@ -21254,6 +21274,10 @@
 
 	var _reactRedux = __webpack_require__(160);
 
+	var _customerTable = __webpack_require__(186);
+
+	var _customerTable2 = _interopRequireDefault(_customerTable);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21262,8 +21286,8 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var CustomerApp = function (_React$Component) {
-	    _inherits(CustomerApp, _React$Component);
+	var CustomerApp = function (_Component) {
+	    _inherits(CustomerApp, _Component);
 
 	    function CustomerApp() {
 	        _classCallCheck(this, CustomerApp);
@@ -21277,20 +21301,24 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                'Hello, there are ',
-	                this.props.customers.length,
-	                ' customers.'
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Risky Customer Analyser'
+	                ),
+	                _react2.default.createElement('p', null),
+	                _react2.default.createElement(_customerTable2.default, { customers: this.props.customers })
 	            );
 	        }
 	    }]);
 
 	    return CustomerApp;
-	}(_react2.default.Component);
+	}(_react.Component);
 
-	// will build
+	// will build this out when structure known
 
 	CustomerApp.propTypes = {
-	    customers: _react2.default.PropTypes.array
+	    customers: _react.PropTypes.array
 	};
 
 	function mapStateToProps(state) {
@@ -21300,6 +21328,127 @@
 	}
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(CustomerApp);
+
+/***/ },
+/* 186 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// stateless display of customer data
+	var CustomerTable = function CustomerTable(props) {
+	  var customers = props.customers;
+	  var custDisplay = customers.map(function (customer) {
+	    return _react2.default.createElement(
+	      'tr',
+	      { key: 'row-' + customer.id },
+	      _react2.default.createElement(
+	        'td',
+	        null,
+	        customer.id
+	      ),
+	      _react2.default.createElement(
+	        'td',
+	        null,
+	        customer.numberOfBets
+	      ),
+	      _react2.default.createElement(
+	        'td',
+	        null,
+	        customer.numberOfWins
+	      ),
+	      _react2.default.createElement(
+	        'td',
+	        null,
+	        customer.totalOutlay
+	      ),
+	      _react2.default.createElement(
+	        'td',
+	        null,
+	        customer.totalPayout
+	      ),
+	      _react2.default.createElement(
+	        'td',
+	        null,
+	        customer.riskProfile.risk
+	      ),
+	      _react2.default.createElement(
+	        'td',
+	        null,
+	        customer.riskProfile.reason
+	      )
+	    );
+	  });
+
+	  return _react2.default.createElement(
+	    'table',
+	    null,
+	    _react2.default.createElement(
+	      'thead',
+	      null,
+	      _react2.default.createElement(
+	        'tr',
+	        null,
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          'Customer'
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          'Number of bets'
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          'Number of wins'
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          'Total outlay'
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          'Total payout'
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          'Risk profile'
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          'Risk description'
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'tbody',
+	      null,
+	      custDisplay
+	    )
+	  );
+	};
+
+	CustomerTable.propTypes = {
+	  customers: _react.PropTypes.number
+	};
+
+	exports.default = CustomerTable;
 
 /***/ }
 /******/ ]);

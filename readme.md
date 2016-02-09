@@ -14,5 +14,6 @@ To build output files, run ```npm run build```.
 
 ## Todo
 [ ] production webpack implementation
+[ ] immutable reducers
 [ ] build out proper prop types for components
 [ ] implement customer/bet services
