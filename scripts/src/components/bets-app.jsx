@@ -1,20 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import CustomerTable from './customer-table';
+import BetTable from './bet-table';
 import Navigator from './navigator';
 
-class CustomerApp extends Component {
+class BetsApp extends Component {
     render() {
         return (<div>
-          <h1>Risky Customer Analyser</h1>
+          <h1>Risky Bets Analyser</h1>
           <Navigator />
-          <CustomerTable customers={this.props.customers.customers} />
+          <BetTable bets={this.props.bets.bets} />
         </div>);
     }
 }
 
 // will build this out when structure completely known
-CustomerApp.propTypes = {
+BetsApp.propTypes = {
     customers: PropTypes.object,
     bets: PropTypes.object
 };
@@ -26,4 +26,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(CustomerApp);
+export default connect(mapStateToProps)(BetsApp);

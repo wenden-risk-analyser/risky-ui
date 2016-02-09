@@ -18,3 +18,5 @@ To build output files, run ```npm run build```.
 [ ] build out proper prop types for components
 [ ] implement customer/bet services reading csv
 [ ] fix up prop definition after reducer combining
+[ ] cleanup url key and routing
+[ ] fix up push state warning message for routing
