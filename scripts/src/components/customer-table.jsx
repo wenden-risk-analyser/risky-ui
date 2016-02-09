@@ -7,8 +7,6 @@ const CustomerTable = (props) => {
         <td>{customer.id}</td>
         <td>{customer.numberOfBets}</td>
         <td>{customer.numberOfWins}</td>
-        <td>{customer.totalOutlay}</td>
-        <td>{customer.totalPayout}</td>
         <td>{customer.riskProfile.risk}</td>
         <td>{customer.riskProfile.reason}</td>
       </tr>)
@@ -20,9 +18,7 @@ const CustomerTable = (props) => {
           <td>Customer</td>
           <td>Number of bets</td>
           <td>Number of wins</td>
-          <td>Total outlay</td>
-          <td>Total payout</td>
-          <td>Risk profile</td>
+          <td>Risk</td>
           <td>Risk description</td>
         </tr>
       </thead>

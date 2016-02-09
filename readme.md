@@ -16,4 +16,4 @@ To build output files, run ```npm run build```.
 [ ] production webpack implementation
 [ ] immutable reducers
 [ ] build out proper prop types for components
-[ ] implement customer/bet services
+[ ] implement customer/bet services reading csv

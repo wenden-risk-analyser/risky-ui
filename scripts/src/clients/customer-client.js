@@ -1,39 +1,50 @@
+import betClient from './bet-client';
+import riskCalculator from 'risk-calculator';
+
 /*
  * Customer service for retrieving customer data.
  *
  * TODO: Get from provided csv file
  */
-const customerService = function () {
-    function getCustomers() {
-        return [
-            {
-                id: '1',
-                numberOfBets: 1000,
-                numberOfWins: 300,
-                totalOutlay: 9999,
-                totalPayout: 7000,
-                riskProfile: {
-                    risk: 'safe',
-                    reason: ''
-                }
-            },
-            {
-                id: '3',
-                numberOfBets: 400,
-                numberOfWins: 300,
-                totalOutlay: 9999,
-                totalPayout: 17000,
-                riskProfile: {
-                    risk: 'risky',
-                    reason: 'large win percentage'
-                }
-            }
-        ];
-    }
+function getCustomers() {
+    return [
+        {
+            id: '2'
+        },
+        {
+            id: '3'
+        }
+    ];
+}
 
-    return {
-        getCustomers
-    };
+// internal customer service
+const customerServiceInt = {
+    getAll: getCustomers,
+    getById() {}
 };
 
-export default customerService();
+// bootstrap risk calculator
+const calc = riskCalculator(customerServiceInt, betClient);
+
+/*
+* @Public
+*
+* Get all customers including their risk profile
+*
+* @returns {Array} List of customers.
+*
+*/
+function getAll() {
+    return customerServiceInt.getAll().map(customer => {
+        const settledBets = betClient.search({ customerId: customer.id, settled: true });
+
+        customer.riskProfile = calc.customerRiskProfile(customer.id);
+        customer.numberOfBets = settledBets.length;
+        customer.numberOfWins = settledBets.filter(bet => bet.payout > 0).length;
+        return customer;
+    });
+}
+
+export default {
+    getAll
+};
