@@ -8,7 +8,7 @@ function uniqueKeyGenerator(bet) {
 // stateless display of bet data
 const BetTable = (props) => {
     const bets = props.bets;
-    const betDisplay = bets.map(bet => (<tr key={uniqueKeyGenerator(bet)}>
+    const betDisplay = bets.map(bet => (<tr key={uniqueKeyGenerator(bet)} className={bet.riskProfile.risk.toLowerCase()}>
         <td>{bet.customerId}</td>
         <td>{bet.riskProfile.risk}</td>
         <td>{bet.riskProfile.reason}</td>
@@ -18,9 +18,9 @@ const BetTable = (props) => {
     return (<table>
       <thead>
         <tr>
-          <td>Bet</td>
-          <td>Risk</td>
-          <td>Risk description</td>
+          <th>Bet</th>
+          <th>Risk</th>
+          <th>Risk description</th>
         </tr>
       </thead>
       <tbody>

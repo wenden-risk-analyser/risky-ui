@@ -22975,10 +22975,10 @@
 	        SAFE: 'Safe',
 	        UNUSUAL: 'Unusual',
 	        RISKY: 'Risky',
-	        HIGHLYRISKY: 'Highly Risky'
+	        HIGHLYRISKY: 'HighlyRisky'
 	    },
 	    RiskReasons: {
-	        CUSTOMER_LARGE_WIN_PERCENTAGE: 'Large win percentage.',
+	        CUSTOMER_LARGE_WIN_PERCENTAGE: 'Customer high win percentage.',
 	        LARGE_STAKE: 'Stake is unusually large based on betting history.',
 	        EXCEPTIONAL_STAKE: 'Stake is exceptionally large based on betting history.',
 	        LARGE_PAYOUT: 'Potential payout is too high.'
@@ -23190,7 +23190,7 @@
 	  var custDisplay = customers.map(function (customer) {
 	    return _react2.default.createElement(
 	      'tr',
-	      { key: 'row-' + customer.id },
+	      { key: 'row-' + customer.id, className: customer.riskProfile.risk.toLowerCase() },
 	      _react2.default.createElement(
 	        'td',
 	        null,
@@ -23229,27 +23229,27 @@
 	        'tr',
 	        null,
 	        _react2.default.createElement(
-	          'td',
+	          'th',
 	          null,
 	          'Customer'
 	        ),
 	        _react2.default.createElement(
-	          'td',
+	          'th',
 	          null,
 	          'Number of bets'
 	        ),
 	        _react2.default.createElement(
-	          'td',
+	          'th',
 	          null,
 	          'Number of wins'
 	        ),
 	        _react2.default.createElement(
-	          'td',
+	          'th',
 	          null,
 	          'Risk'
 	        ),
 	        _react2.default.createElement(
-	          'td',
+	          'th',
 	          null,
 	          'Risk description'
 	        )
@@ -23293,7 +23293,7 @@
 	    // simple link display
 	    return _react2.default.createElement(
 	        'p',
-	        null,
+	        { className: 'navigator' },
 	        _react2.default.createElement(
 	            _reactRouter.Link,
 	            { to: '/' },
@@ -27677,7 +27677,7 @@
 	    var betDisplay = bets.map(function (bet) {
 	        return _react2.default.createElement(
 	            'tr',
-	            { key: uniqueKeyGenerator(bet) },
+	            { key: uniqueKeyGenerator(bet), className: bet.riskProfile.risk.toLowerCase() },
 	            _react2.default.createElement(
 	                'td',
 	                null,
@@ -27706,17 +27706,17 @@
 	                'tr',
 	                null,
 	                _react2.default.createElement(
-	                    'td',
+	                    'th',
 	                    null,
 	                    'Bet'
 	                ),
 	                _react2.default.createElement(
-	                    'td',
+	                    'th',
 	                    null,
 	                    'Risk'
 	                ),
 	                _react2.default.createElement(
-	                    'td',
+	                    'th',
 	                    null,
 	                    'Risk description'
 	                )

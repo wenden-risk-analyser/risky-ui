@@ -20,3 +20,5 @@ To build output files, run ```npm run build```.
 [ ] fix up prop definition after reducer combining
 [ ] cleanup url key and routing
 [ ] fix up push state warning message for routing
+[ ] filtering of data on the UI
+[ ] sass/less integration
