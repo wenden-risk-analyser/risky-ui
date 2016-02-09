@@ -17,3 +17,4 @@ To build output files, run ```npm run build```.
 [ ] immutable reducers
 [ ] build out proper prop types for components
 [ ] implement customer/bet services reading csv
+[ ] fix up prop definition after reducer combining

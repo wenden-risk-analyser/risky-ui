@@ -65,16 +65,17 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _actions = __webpack_require__(184);
+	var _actions = __webpack_require__(186);
 
-	var _customersApp = __webpack_require__(193);
+	var _customersApp = __webpack_require__(196);
 
 	var _customersApp2 = _interopRequireDefault(_customersApp);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// load up the customers
+	// load up the customers and bets
 	_store2.default.dispatch((0, _actions.getAllCustomers)());
+	_store2.default.dispatch((0, _actions.getAllBets)());
 
 	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -21152,13 +21153,13 @@
 
 	var _redux = __webpack_require__(166);
 
-	var _customers = __webpack_require__(182);
+	var _index = __webpack_require__(182);
 
-	var _customers2 = _interopRequireDefault(_customers);
+	var _index2 = _interopRequireDefault(_index);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = (0, _redux.createStore)(_customers2.default);
+	exports.default = (0, _redux.createStore)(_index2.default);
 
 /***/ },
 /* 182 */
@@ -21170,10 +21171,85 @@
 	    value: true
 	});
 
-	var _actionTypes = __webpack_require__(183);
+	var _redux = __webpack_require__(166);
+
+	var _bets = __webpack_require__(183);
+
+	var _bets2 = _interopRequireDefault(_bets);
+
+	var _customers = __webpack_require__(185);
+
+	var _customers2 = _interopRequireDefault(_customers);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = (0, _redux.combineReducers)({
+	    customers: _customers2.default,
+	    bets: _bets2.default
+	});
+
+/***/ },
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _actionTypes = __webpack_require__(184);
+
+	// bet reducer
+	function bets() {
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	    var action = arguments[1];
+
+	    switch (action.type) {
+	        case _actionTypes.RECEIVE_BETS:
+	            {
+	                return Object.assign({}, state, {
+	                    bets: action.bets
+	                });
+	            }
+	        default:
+	            {
+	                return state;
+	            }
+	    }
+	}
+
+	exports.default = bets;
+
+/***/ },
+/* 184 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var RECEIVE_CUSTOMERS = exports.RECEIVE_CUSTOMERS = 'RECEIVE_CUSTOMERS';
+	var RECEIVE_BETS = exports.RECEIVE_BETS = 'RECEIVE_BETS';
+
+/***/ },
+/* 185 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _actionTypes = __webpack_require__(184);
 
 	//
-	function customers(state, action) {
+	function customers() {
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	    var action = arguments[1];
+
 	    switch (action.type) {
 	        case _actionTypes.RECEIVE_CUSTOMERS:
 	            {
@@ -21191,18 +21267,7 @@
 	exports.default = customers;
 
 /***/ },
-/* 183 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var RECEIVE_CUSTOMERS = exports.RECEIVE_CUSTOMERS = 'RECEIVE_CUSTOMERS';
-
-/***/ },
-/* 184 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21211,28 +21276,34 @@
 	    value: true
 	});
 	exports.getAllCustomers = getAllCustomers;
+	exports.getAllBets = getAllBets;
 
-	var _actionTypes = __webpack_require__(183);
+	var _actionTypes = __webpack_require__(184);
 
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
-	var _customerClient = __webpack_require__(185);
+	var _dataClient = __webpack_require__(187);
 
-	var _customerClient2 = _interopRequireDefault(_customerClient);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var dataClient = _interopRequireWildcard(_dataClient);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function getAllCustomers() {
 	    return {
 	        type: actionTypes.RECEIVE_CUSTOMERS,
-	        customers: _customerClient2.default.getAll()
+	        customers: dataClient.getAllCustomers()
+	    };
+	}
+
+	function getAllBets() {
+	    return {
+	        type: actionTypes.RECEIVE_BETS,
+	        bets: dataClient.getAllBets()
 	    };
 	}
 
 /***/ },
-/* 185 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21240,17 +21311,72 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.getAllCustomers = getAllCustomers;
+	exports.getAllBets = getAllBets;
 
-	var _betClient = __webpack_require__(186);
+	var _customerService = __webpack_require__(188);
 
-	var _betClient2 = _interopRequireDefault(_betClient);
+	var _customerService2 = _interopRequireDefault(_customerService);
 
-	var _riskCalculator = __webpack_require__(187);
+	var _betService = __webpack_require__(189);
+
+	var _betService2 = _interopRequireDefault(_betService);
+
+	var _riskCalculator = __webpack_require__(190);
 
 	var _riskCalculator2 = _interopRequireDefault(_riskCalculator);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// bootstrap risk calculator
+	var calc = (0, _riskCalculator2.default)(_customerService2.default, _betService2.default);
+
+	/*
+	* @Public
+	*
+	* Get all customers including their risk profile
+	*
+	* @returns {Array} List of customers.
+	*
+	*/
+	function getAllCustomers() {
+	    return _customerService2.default.getAll().map(function (customer) {
+	        var settledBets = _betService2.default.search({ customerId: customer.id, settled: true });
+
+	        customer.riskProfile = calc.customerRiskProfile(customer.id);
+	        customer.numberOfBets = settledBets.length;
+	        customer.numberOfWins = settledBets.filter(function (bet) {
+	            return bet.payout > 0;
+	        }).length;
+	        return customer;
+	    });
+	}
+
+	/*
+	* @Public
+	*
+	* Get all bets including their risk profile
+	*
+	* @returns {Array} List of bets.
+	*
+	*/
+	function getAllBets() {
+	    return _betService2.default.getAll().map(function (bet) {
+	        bet.riskProfile = calc.betRiskProfile(bet);
+
+	        return bet;
+	    });
+	}
+
+/***/ },
+/* 188 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 	/*
 	 * Customer service for retrieving customer data.
 	 *
@@ -21264,42 +21390,14 @@
 	    }];
 	}
 
-	// internal customer service
-	var customerServiceInt = {
+	// customer service
+	exports.default = {
 	    getAll: getCustomers,
 	    getById: function getById() {}
 	};
 
-	// bootstrap risk calculator
-	var calc = (0, _riskCalculator2.default)(customerServiceInt, _betClient2.default);
-
-	/*
-	* @Public
-	*
-	* Get all customers including their risk profile
-	*
-	* @returns {Array} List of customers.
-	*
-	*/
-	function getAll() {
-	    return customerServiceInt.getAll().map(function (customer) {
-	        var settledBets = _betClient2.default.search({ customerId: customer.id, settled: true });
-
-	        customer.riskProfile = calc.customerRiskProfile(customer.id);
-	        customer.numberOfBets = settledBets.length;
-	        customer.numberOfWins = settledBets.filter(function (bet) {
-	            return bet.payout > 0;
-	        }).length;
-	        return customer;
-	    });
-	}
-
-	exports.default = {
-	    getAll: getAll
-	};
-
 /***/ },
-/* 186 */
+/* 189 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21307,7 +21405,12 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	function getAll() {
+	/*
+	 * Bet service for retrieving customer data.
+	 *
+	 * TODO: Get from provided csv file
+	 */
+	function getBets() {
 	    return [{
 	        customerId: '2',
 	        eventId: '1',
@@ -21336,7 +21439,7 @@
 	}
 
 	function search(query) {
-	    var bets = getAll();
+	    var bets = getBets();
 
 	    // really dumb search based off the query here.
 	    // need to come back and make this a lot smarter.
@@ -21345,27 +21448,28 @@
 	    });
 	}
 
+	// internal bet service
 	exports.default = {
-	    getAll: getAll,
+	    getAll: getBets,
 	    search: search
 	};
 
 /***/ },
-/* 187 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(188);
+	module.exports = __webpack_require__(191);
 
 
 /***/ },
-/* 188 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
-	const check             = __webpack_require__(189);
-	const riskConstants     = __webpack_require__(190);
+	const check             = __webpack_require__(192);
+	const riskConstants     = __webpack_require__(193);
 	const validationContent = riskConstants.ValidationContent;
-	const customerRisks     = __webpack_require__(191);
-	const betRisks     = __webpack_require__(192);
+	const customerRisks     = __webpack_require__(194);
+	const betRisks     = __webpack_require__(195);
 
 	/*
 	* Customer Service interface
@@ -21507,7 +21611,7 @@
 
 
 /***/ },
-/* 189 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*globals define, module, Symbol */
@@ -22372,7 +22476,7 @@
 
 
 /***/ },
-/* 190 */
+/* 193 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -22406,10 +22510,10 @@
 
 
 /***/ },
-/* 191 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
-	const riskConstants = __webpack_require__(190);
+	const riskConstants = __webpack_require__(193);
 
 	/*
 	* @Public
@@ -22441,10 +22545,10 @@
 
 
 /***/ },
-/* 192 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
-	const riskConstants = __webpack_require__(190);
+	const riskConstants = __webpack_require__(193);
 
 	/*
 	* @Public
@@ -22509,7 +22613,7 @@
 
 
 /***/ },
-/* 193 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22526,9 +22630,13 @@
 
 	var _reactRedux = __webpack_require__(160);
 
-	var _customerTable = __webpack_require__(194);
+	var _customerTable = __webpack_require__(197);
 
 	var _customerTable2 = _interopRequireDefault(_customerTable);
+
+	var _betTable = __webpack_require__(198);
+
+	var _betTable2 = _interopRequireDefault(_betTable);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22559,7 +22667,8 @@
 	                    'Risky Customer Analyser'
 	                ),
 	                _react2.default.createElement('p', null),
-	                _react2.default.createElement(_customerTable2.default, { customers: this.props.customers })
+	                _react2.default.createElement(_customerTable2.default, { customers: this.props.customers.customers }),
+	                _react2.default.createElement(_betTable2.default, { bets: this.props.bets.bets })
 	            );
 	        }
 	    }]);
@@ -22570,19 +22679,21 @@
 	// will build this out when structure completely known
 
 	CustomerApp.propTypes = {
-	    customers: _react.PropTypes.array
+	    customers: _react.PropTypes.object,
+	    bets: _react.PropTypes.object
 	};
 
 	function mapStateToProps(state) {
 	    return {
-	        customers: state.customers
+	        customers: state.customers,
+	        bets: state.bets
 	    };
 	}
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(CustomerApp);
 
 /***/ },
-/* 194 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22682,6 +22793,93 @@
 	};
 
 	exports.default = CustomerTable;
+
+/***/ },
+/* 198 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// crude uniqueKey generator for each bet row
+	function uniqueKeyGenerator(bet) {
+	    return 'row-' + bet.customerId + bet.eventId + bet.participantId;
+	}
+
+	// stateless display of bet data
+	var BetTable = function BetTable(props) {
+	    var bets = props.bets;
+	    var betDisplay = bets.map(function (bet) {
+	        return _react2.default.createElement(
+	            'tr',
+	            { key: uniqueKeyGenerator(bet) },
+	            _react2.default.createElement(
+	                'td',
+	                null,
+	                bet.customerId
+	            ),
+	            _react2.default.createElement(
+	                'td',
+	                null,
+	                bet.riskProfile.risk
+	            ),
+	            _react2.default.createElement(
+	                'td',
+	                null,
+	                bet.riskProfile.reason
+	            )
+	        );
+	    });
+
+	    return _react2.default.createElement(
+	        'table',
+	        null,
+	        _react2.default.createElement(
+	            'thead',
+	            null,
+	            _react2.default.createElement(
+	                'tr',
+	                null,
+	                _react2.default.createElement(
+	                    'td',
+	                    null,
+	                    'Bet'
+	                ),
+	                _react2.default.createElement(
+	                    'td',
+	                    null,
+	                    'Risk'
+	                ),
+	                _react2.default.createElement(
+	                    'td',
+	                    null,
+	                    'Risk description'
+	                )
+	            )
+	        ),
+	        _react2.default.createElement(
+	            'tbody',
+	            null,
+	            betDisplay
+	        )
+	    );
+	};
+
+	// will build this out when structure completely known
+	BetTable.propTypes = {
+	    bets: _react.PropTypes.array
+	};
+
+	exports.default = BetTable;
 
 /***/ }
 /******/ ]);
