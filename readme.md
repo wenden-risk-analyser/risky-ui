@@ -9,6 +9,8 @@ One glaring omission is the lack of connectivity with the _.csv_ betting data. Y
 
 Looking back there are probably a few things I would do differently, and the UI is quite bare bones! Nonetheless, enjoy.
 
+I almost forgot! You'll see there are no tests in this project :-( Again, I had to forgo them due to time constraints. Not good I know. I tested the logic in the risk calculator package for calculating risk profiles however just didn't get around to it here.
+
 ## Usage
 Pull down source code and run ```npm install``` to install dependencies.
 
@@ -18,6 +20,7 @@ To run the project from the command line run ```npm run start``` and head to htt
 If any changes are required run ```npm run build``` after the changes which will recompile the code.
 
 ## Todo
+* [ ] tests!
 * [ ] production webpack implementation
 * [ ] immutable reducers
 * [ ] build out proper prop types for components
