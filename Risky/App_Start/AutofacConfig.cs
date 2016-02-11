@@ -5,6 +5,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Service;
+using Service.Helpers;
 
 namespace Risky
 {
@@ -20,9 +21,10 @@ namespace Risky
             // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            builder.RegisterType<BetService>().As<IBetService>().InstancePerRequest();
-
+            builder.RegisterType<BetService>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<CustomerService>().AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterType<CustomerRiskProfile>().SingleInstance();
+            builder.RegisterType<BetRiskProfile>().SingleInstance();
 
             // Configure MVC with the dependency resolver.
             var container = builder.Build();

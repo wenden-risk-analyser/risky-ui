@@ -9,5 +9,6 @@
         public bool Settled { get; set; }
         public decimal PotentialPayout { get; set; }
         public decimal Payout { get; set; }
+        public RiskProfile RiskProfile { get; set; }
     }
 }

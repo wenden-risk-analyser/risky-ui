@@ -41,11 +41,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BetService.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="CustomerService.cs" />
+    <Compile Include="Helpers\BetRiskProfile.cs" />
     <Compile Include="Helpers\BetReader.cs" />
+    <Compile Include="Helpers\CustomerRiskProfile.cs" />
     <Compile Include="IBetService.cs" />
     <Compile Include="ICustomerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\Bet\HighPayoutRisk.cs" />
+    <Compile Include="Rules\Bet\HighStakeRisk.cs" />
+    <Compile Include="Rules\Bet\IBetRisk.cs" />
+    <Compile Include="Rules\Customer\HighWinRisk.cs" />
+    <Compile Include="Rules\Customer\ICustomerRisk.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DTO\DTO.csproj">
@@ -61,6 +69,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
