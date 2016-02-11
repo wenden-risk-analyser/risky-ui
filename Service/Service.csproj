@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BetService.cs" />
     <Compile Include="CustomerService.cs" />
+    <Compile Include="Helpers\BetReader.cs" />
     <Compile Include="IBetService.cs" />
     <Compile Include="ICustomerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,6 +52,14 @@
       <Project>{CA47226D-7B97-4A7E-A15A-D7B618547F16}</Project>
       <Name>DTO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Mock\Settled.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Mock\Unsettled.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
