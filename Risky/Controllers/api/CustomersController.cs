@@ -1,23 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
-using DTO;
+﻿using System.Web.Http;
+using Service;
 
 namespace Risky.Controllers.api
 {
     [RoutePrefix("api/customers")]
     public class CustomersController : ApiController
     {
+        private readonly ICustomerService _customerService;
+
+        public CustomersController(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
+
         [HttpGet]
         [Route("")]
         public IHttpActionResult Customers()
         {
-            return Json(new List<Customer>
-            {
-                new Customer
-                {
-                    Id = 1
-                }
-            });
+            return Json(_customerService.GetAll());
         }
     }
 }
