@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Risky", "Risky\Risky.csproj", "{7C351706-9D17-45CF-8FE2-36BB98691772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Risky.Tests", "Risky.Tests\Risky.Tests.csproj", "{B9A42D69-1960-4BA3-AE6F-B7378CF9831F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C351706-9D17-45CF-8FE2-36BB98691772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C351706-9D17-45CF-8FE2-36BB98691772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C351706-9D17-45CF-8FE2-36BB98691772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C351706-9D17-45CF-8FE2-36BB98691772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9A42D69-1960-4BA3-AE6F-B7378CF9831F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9A42D69-1960-4BA3-AE6F-B7378CF9831F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9A42D69-1960-4BA3-AE6F-B7378CF9831F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9A42D69-1960-4BA3-AE6F-B7378CF9831F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
