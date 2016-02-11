@@ -164,3 +164,5 @@ tests/applicationHost.config
 # NUnit test results
 TestResult.xml
 
+# Application build artefacts
+node_modules/

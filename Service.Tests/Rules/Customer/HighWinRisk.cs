@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
-using DTO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Service.Rules.Customer;
 
 namespace Service.Tests.Rules.Customer
 {
+    using DTO;
+
     [TestClass]
     public class UnitTest1
     {

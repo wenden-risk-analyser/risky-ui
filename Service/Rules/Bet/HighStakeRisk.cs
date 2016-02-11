@@ -16,7 +16,7 @@ namespace Service.Rules.Bet
 
             var avergaStake = settledBets.Average(bets => bets.Stake);
 
-            if (avergaStake > Constants.EXCEPTIONALLY_RISKY_STAKE_FACTOR)
+            if (bet.Stake > (avergaStake * Constants.EXCEPTIONALLY_RISKY_STAKE_FACTOR))
             {
                 return new RiskProfile
                 {
@@ -25,7 +25,7 @@ namespace Service.Rules.Bet
                 };
             }
 
-            if (avergaStake > Constants.UNUSUAL_STAKE_FACTOR)
+            if (bet.Stake > (avergaStake *  Constants.UNUSUAL_STAKE_FACTOR))
             {
                 return new RiskProfile
                 {

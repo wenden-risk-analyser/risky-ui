@@ -1,6 +1,4 @@
-﻿using System.Net.Http.Headers;
-using System.Web.Http;
-using Newtonsoft.Json.Converters;
+﻿using System.Web.Http;
 
 namespace Risky
 {
@@ -10,14 +8,6 @@ namespace Risky
         {
             // Web API routes
             config.MapHttpAttributeRoutes();
-
-            // Web API configuration and services
-            var formatters = config.Formatters;
-            var settings = formatters.JsonFormatter.SerializerSettings;
-
-            // send enums back as strings
-            settings.Converters.Add(new StringEnumConverter {CamelCaseText = true});
-            formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

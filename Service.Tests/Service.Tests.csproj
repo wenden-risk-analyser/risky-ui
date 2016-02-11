@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Rules\Bet\HighStakeRisk.cs" />
     <Compile Include="Rules\Customer\HighWinRisk.cs" />
     <Compile Include="Rules\Mocks.cs" />
     <Compile Include="UnitTest1.cs" />
@@ -65,9 +66,7 @@
       <Name>Service</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Rules\Bet\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

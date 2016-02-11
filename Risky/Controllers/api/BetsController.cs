@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Linq;
+using System.Web.Http;
 using Service;
 
 namespace Risky.Controllers.api
@@ -18,6 +19,13 @@ namespace Risky.Controllers.api
         public IHttpActionResult Bets()
         {
             return Json(_betService.GetAll());
+        }
+
+        [HttpGet]
+        [Route("unsettled")]
+        public IHttpActionResult UnsettledBets()
+        {
+            return Json(_betService.GetAll().Where(bet => !bet.Settled));
         }
     }
 }

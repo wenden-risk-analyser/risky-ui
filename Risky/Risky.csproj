@@ -229,6 +229,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".eslintrc.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -238,6 +239,15 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\Src\actions\index.js" />
+    <Content Include="Scripts\Src\clients\data-client.js" />
+    <Content Include="Scripts\Src\constants\action-types.js" />
+    <Content Include="Scripts\Src\reducers\bets.js" />
+    <Content Include="Scripts\Src\reducers\customers.js" />
+    <Content Include="Scripts\Src\reducers\index.js" />
+    <Content Include="Scripts\Src\services\bet-service.js" />
+    <Content Include="Scripts\Src\services\customer-service.js" />
+    <Content Include="Scripts\Src\store.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -250,17 +260,24 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\" />
+    <Folder Include="Scripts\Dist\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="readme.md" />
+    <Content Include="package.json" />
+    <Content Include="Scripts\Src\app.jsx" />
+    <Content Include="Scripts\Src\components\bet-table.jsx" />
+    <Content Include="Scripts\Src\components\bets-app.jsx" />
+    <Content Include="Scripts\Src\components\customer-table.jsx" />
+    <Content Include="Scripts\Src\components\customers-app.jsx" />
+    <Content Include="Scripts\Src\components\navigator.jsx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DTO\DTO.csproj">

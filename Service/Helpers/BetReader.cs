@@ -6,7 +6,7 @@ namespace Service.Helpers
 {
     public class BetReader
     {
-        public static IList<Bet> Read(string fileName, bool settled)
+        public IList<Bet> Read(string fileName, bool settled)
         {
             var reader = new StreamReader(File.OpenRead(fileName));
             IList<Bet> bets = new List<Bet>();
@@ -17,12 +17,12 @@ namespace Service.Helpers
 
                 bets.Add(new Bet
                 {
-                    CustomerId = int.Parse(values[0]),
-                    EventId = int.Parse(values[1]),
-                    ParticipantId = int.Parse(values[2]),
-                    Stake = decimal.Parse(values[3]),
-                    Payout = decimal.Parse(values[4]),
-                    PotentialPayout = decimal.Parse(values[4]),
+                    CustomerId = int.Parse(values[0].Trim()),
+                    EventId = int.Parse(values[1].Trim()),
+                    ParticipantId = int.Parse(values[2].Trim()),
+                    Stake = decimal.Parse(values[3].Trim()),
+                    Payout = decimal.Parse(values[4].Trim()),
+                    PotentialPayout = decimal.Parse(values[4].Trim()),
                     Settled = settled
                 });
             }
