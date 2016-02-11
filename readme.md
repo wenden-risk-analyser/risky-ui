@@ -2,6 +2,8 @@
 
 UI for viewing the risk profile of customers and unsettled bets.
 
+NOTE: If you had already viewed and pulled down the older version and wondering what is going on (no .net implementation), I've replaced it with another version. I really wasn't happy with the implementation and it was bugging me. This version is a bit cleaner but still has work to do.
+
 ## Missing features
 * There is no caching of the _csv_ data. Just ran out of time, would have been nice to have it though. Not even a lock which is crap.
 * Hardly any tests at the moment. Again a time restraint.
