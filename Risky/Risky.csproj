@@ -239,6 +239,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\Dist\app.js" />
     <Content Include="Scripts\Src\actions\index.js" />
     <Content Include="Scripts\Src\clients\data-client.js" />
     <Content Include="Scripts\Src\constants\action-types.js" />
@@ -264,7 +265,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Dist\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

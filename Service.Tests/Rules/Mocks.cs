@@ -7,22 +7,26 @@ namespace Service.Tests.Rules
         public static IList<DTO.Bet> HighWinBets()
         {
             // win percentage = 66.666666
+            // average stake 50
             return new List<DTO.Bet>
             {
                 new DTO.Bet
                 {
                     Settled = true,
-                    Payout = 300
+                    Payout = 300,
+                    Stake = 50
                 },
                 new DTO.Bet
                 {
                     Settled = true,
-                    Payout = 200
+                    Payout = 200,
+                    Stake = 50
                 },
                 new DTO.Bet
                 {
                     Settled = true,
-                    Payout = 0
+                    Payout = 0,
+                    Stake = 50
                 }
             };
         }
@@ -46,6 +50,29 @@ namespace Service.Tests.Rules
                 {
                     Settled = true,
                     Payout = 0
+                }
+            };
+        }
+
+        public static IList<DTO.Bet> AverageStake50()
+        {
+            // average stake = 50
+            return new List<DTO.Bet>
+            {
+                new DTO.Bet
+                {
+                    Settled = true,
+                    Stake = 50
+                },
+                new DTO.Bet
+                {
+                    Settled = true,
+                    Stake = 50
+                },
+                new DTO.Bet
+                {
+                    Settled = true,
+                    Stake = 50
                 }
             };
         }
