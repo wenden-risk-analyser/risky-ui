@@ -14,8 +14,6 @@ module.exports = {
           'ignoreComments': false
         }],
         "new-cap": [2, { "capIsNewExceptions": ["List"] }],
-        "no-param-reassign": [2, { "props": false }],
-
-        "react/prop-types": 0
+        "no-param-reassign": [2, { "props": false }]
     }
 };

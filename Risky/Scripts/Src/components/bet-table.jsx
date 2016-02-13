@@ -36,7 +36,19 @@ const BetTable = (props) => {
 
 // will build this out when structure completely known
 BetTable.propTypes = {
-    bets: PropTypes.array
+    bets: PropTypes.arrayOf(PropTypes.shape({
+        CustomerId: PropTypes.number,
+        EventId: PropTypes.number,
+        ParticipantId: PropTypes.number,
+        Stake: PropTypes.number,
+        Payout: PropTypes.number,
+        PotentialPayout: PropTypes.number,
+        Settled: PropTypes.bool,
+        RiskProfile: PropTypes.shape({
+            Risk: PropTypes.number,
+            Reason: PropTypes.string
+        })
+    }))
 };
 
 export default BetTable;

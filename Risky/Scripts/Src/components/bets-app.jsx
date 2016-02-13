@@ -1,21 +1,24 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import BetTable from './bet-table';
 
-class BetsApp extends Component {
-    render() {
-        const bets = this.props.bets.bets || [];
-        return (<div>
-            <h2>Risky Bets Analyser</h2>
-            <BetTable bets={bets} />
-          </div>);
-    }
-}
+const BetsApp = (props) => {
+    const bets = props.betService.bets || [];
+    return (<div>
+        <h2>Risky Bets Analyser</h2>
+        <BetTable bets={bets} />
+      </div>);
+};
+
+BetsApp.propTypes = {
+    betService: PropTypes.shape({
+        bets: React.PropTypes.array
+    })
+};
 
 function mapStateToProps(state) {
     return {
-        customers: state.customers,
-        bets: state.bets
+        betService: state.betService
     };
 }
 

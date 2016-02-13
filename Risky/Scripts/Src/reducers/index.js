@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import bets from './bets';
-import customers from './customers';
+import betService from './bets';
+import customerService from './customers';
 
 export default combineReducers({
-    customers,
-    bets
+    betService,
+    customerService
 });

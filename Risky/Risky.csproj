@@ -241,7 +241,6 @@
     </Content>
     <Content Include="Scripts\Dist\app.js" />
     <Content Include="Scripts\Src\actions\index.js" />
-    <Content Include="Scripts\Src\clients\data-client.js" />
     <Content Include="Scripts\Src\constants\action-types.js" />
     <Content Include="Scripts\Src\reducers\bets.js" />
     <Content Include="Scripts\Src\reducers\customers.js" />
@@ -249,6 +248,7 @@
     <Content Include="Scripts\Src\services\bet-service.js" />
     <Content Include="Scripts\Src\services\customer-service.js" />
     <Content Include="Scripts\Src\store.js" />
+    <Content Include="Scripts\Src\utilities\friendly-risk.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -277,7 +277,6 @@
     <Content Include="Scripts\Src\components\bets-app.jsx" />
     <Content Include="Scripts\Src\components\customer-table.jsx" />
     <Content Include="Scripts\Src\components\customers-app.jsx" />
-    <Content Include="Scripts\Src\components\navigator.jsx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DTO\DTO.csproj">

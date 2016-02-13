@@ -1,21 +1,24 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import CustomerTable from './customer-table';
 
-class CustomerApp extends Component {
-    render() {
-        const customers = this.props.customers.customers || [];
-        return (<div>
-          <h2>Risky Customer Analyser</h2>
-          <CustomerTable customers={customers} />
-        </div>);
-    }
-}
+const CustomerApp = (props) => {
+    const customers = props.customerService.customers || [];
+    return (<div>
+        <h2>Risky Customer Analyser</h2>
+        <CustomerTable customers={customers} />
+    </div>);
+};
+
+CustomerApp.propTypes = {
+    customerService: PropTypes.shape({
+        customers: React.PropTypes.array
+    })
+};
 
 function mapStateToProps(state) {
     return {
-        customers: state.customers,
-        bets: state.bets
+        customerService: state.customerService
     };
 }
 
